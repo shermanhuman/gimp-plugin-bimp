@@ -335,6 +335,7 @@ static void add_input_folder_r(char* folder, gboolean with_subdirs)
                         
             if ((
                 g_ascii_strcasecmp(file_extension, ".bmp") == 0 ||
+                g_ascii_strcasecmp(file_extension, ".tga") == 0 ||
                 g_ascii_strcasecmp(file_extension, ".jpeg") == 0 ||
                 g_ascii_strcasecmp(file_extension, ".jpg") == 0 ||
                 g_ascii_strcasecmp(file_extension, ".jpe") == 0 ||
@@ -652,7 +653,13 @@ static void open_file_chooser(GtkWidget *widget, gpointer data)
     gtk_file_filter_set_name(supported[6], "GIMP XCF (*.xcf)");
     gtk_file_filter_add_pattern (supported[6], "*.[xX][cC][fF]");
     gtk_file_filter_add_pattern (filter_all, "*.[xX][cC][fF]");
-        
+       
+
+    supported[7] = gtk_file_filter_new();
+    gtk_file_filter_set_name(supported[7], "TGA (*.tga)");
+    gtk_file_filter_add_pattern (supported[7], "*.[tT][gG][aA]");
+    gtk_file_filter_add_pattern (filter_all, "*.[tT][gG][aA]");
+ 
     gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter_all);
     int i;
     for(i = 0; i < 7; i++) {
